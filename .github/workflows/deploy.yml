@@ -51,23 +51,14 @@ jobs:
     needs: test-backend
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    defaults:
-      run:
-        working-directory: backend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Debug environment
-        run: |
-          echo "PWD: $(pwd)"
-          ls -la
-          ls -la src/ 2>&1 || echo "src/ NOT FOUND"
-          cat wrangler.toml 2>&1 || echo "wrangler.toml NOT FOUND"
       - name: Deploy to Cloudflare Workers
         run: |
-          npm install -g wrangler@4 2>&1
-          wrangler deploy 2>&1
+          cd backend
+          npx --yes wrangler@4 deploy 2>&1
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
