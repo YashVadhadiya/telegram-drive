@@ -1,0 +1,188 @@
+.progress {
+  width: 100%;
+  height: 8px;
+  background: var(--progress-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  transition: width var(--transition-slow);
+  position: relative;
+  min-width: 0;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progress-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.progress-bar.success { background: var(--gradient-success); }
+.progress-bar.warning { background: var(--gradient-warning); }
+.progress-bar.danger { background: var(--gradient-danger); }
+
+.progress-sm { height: 4px; }
+.progress-lg { height: 12px; }
+
+.progress-upload {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.progress-upload-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.progress-upload-filename {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.progress-upload-percent {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.progress-upload-bar {
+  height: 6px;
+  background: var(--progress-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-upload-bar .progress-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  transition: width var(--transition-slow);
+}
+
+.progress-upload-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.progress-upload-speed {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress-upload-remaining {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress-circular {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.progress-circular svg {
+  transform: rotate(-90deg);
+}
+
+.progress-circular-track {
+  fill: none;
+  stroke: var(--progress-bg);
+  stroke-width: 4;
+}
+
+.progress-circular-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 175.93;
+  stroke-dashoffset: 175.93;
+  transition: stroke-dashoffset var(--transition-slow);
+}
+
+.progress-circular-fill.success { stroke: var(--success); }
+.progress-circular-fill.warning { stroke: var(--warning); }
+.progress-circular-fill.danger { stroke: var(--danger); }
+
+.progress-circular-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.progress-circular-sm { width: 40px; height: 40px; }
+.progress-circular-lg { width: 80px; height: 80px; }
+
+.progress-circular-sm .progress-circular-text { font-size: 0.625rem; }
+.progress-circular-lg .progress-circular-text { font-size: 0.875rem; }
+
+.progress-stacked {
+  display: flex;
+  height: 8px;
+  background: var(--progress-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-stacked .progress-bar {
+  border-radius: 0;
+}
+
+.progress-stacked .progress-bar:first-child {
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+}
+
+.progress-stacked .progress-bar:last-child {
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+.progress-stacked .progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-stacked .progress-bar::after {
+  display: none;
+}

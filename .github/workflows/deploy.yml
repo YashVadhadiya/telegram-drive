@@ -1,0 +1,103 @@
+name: Deploy Telegram Drive
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  lint-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Lint HTML
+        run: |
+          echo "Validating HTML..."
+          npx html-validate index.html || true
+      - name: Lint CSS
+        run: |
+          echo "Validating CSS..."
+          npx stylelint "css/**/*.css" || true
+      - name: Lint JavaScript
+        run: |
+          echo "Validating JS..."
+          npx eslint "js/**/*.js" || true
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    needs: lint-frontend
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-backend:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: backend
+          secrets: |
+            TELEGRAM_BOT_TOKEN
+            JWT_PRIVATE_KEY
+            JWT_PUBLIC_KEY
+            ENCRYPTION_MASTER_KEY
+            TELEGRAM_API_ID
+            TELEGRAM_API_HASH
+            COOKIE_SECRET
+
+  test-backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Run wrangler check
+        run: npx wrangler deploy --dry-run

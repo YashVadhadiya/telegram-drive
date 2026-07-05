@@ -1,0 +1,15 @@
+export const ERRORS = {
+  UNAUTHORIZED: { code: 'UNAUTHORIZED', message: 'Authentication required', status: 401 },
+  TOKEN_EXPIRED: { code: 'TOKEN_EXPIRED', message: 'Token has expired', status: 401 },
+  FORBIDDEN: { code: 'FORBIDDEN', message: 'Access denied', status: 403 },
+  NOT_FOUND: { code: 'NOT_FOUND', message: 'Resource not found', status: 404 },
+  VALIDATION_ERROR: { code: 'VALIDATION_ERROR', message: 'Validation failed', status: 400 },
+  RATE_LIMITED: { code: 'RATE_LIMITED', message: 'Too many requests', status: 429 },
+  FILE_TOO_LARGE: { code: 'FILE_TOO_LARGE', message: 'File exceeds size limit', status: 413 },
+  INVALID_FILE_TYPE: { code: 'INVALID_FILE_TYPE', message: 'File type not allowed', status: 415 },
+  UPLOAD_IN_PROGRESS: { code: 'UPLOAD_IN_PROGRESS', message: 'Upload already in progress', status: 409 },
+  UPLOAD_FAILED: { code: 'UPLOAD_FAILED', message: 'Upload failed', status: 500 },
+  TELEGRAM_ERROR: { code: 'TELEGRAM_ERROR', message: 'Telegram API error', status: 502 },
+  MTProto_ERROR: { code: 'MTPROTO_ERROR', message: 'MTProto error', status: 502 },
+  INTERNAL_ERROR: { code: 'INTERNAL_ERROR', message: 'Internal server error', status: 500 },
+};

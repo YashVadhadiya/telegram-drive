@@ -1,0 +1,168 @@
+.fade-in {
+  animation: fadeIn var(--transition-normal) ease forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--transition-normal) ease forwards;
+}
+
+.fade-in-down {
+  animation: fadeInDown var(--transition-normal) ease forwards;
+}
+
+.scale-in {
+  animation: scaleIn var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft var(--transition-normal) ease forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight var(--transition-normal) ease forwards;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton) 25%,
+    var(--bg-hover) 50%,
+    var(--skeleton) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  z-index: var(--z-loader);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-icon {
+  color: var(--accent);
+  margin-bottom: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.loader-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.stagger > * {
+  opacity: 0;
+}
+
+.stagger > *:nth-child(1) { animation: fadeInUp 0.3s 0.05s ease forwards; }
+.stagger > *:nth-child(2) { animation: fadeInUp 0.3s 0.1s ease forwards; }
+.stagger > *:nth-child(3) { animation: fadeInUp 0.3s 0.15s ease forwards; }
+.stagger > *:nth-child(4) { animation: fadeInUp 0.3s 0.2s ease forwards; }
+.stagger > *:nth-child(5) { animation: fadeInUp 0.3s 0.25s ease forwards; }
+.stagger > *:nth-child(6) { animation: fadeInUp 0.3s 0.3s ease forwards; }
+.stagger > *:nth-child(7) { animation: fadeInUp 0.3s 0.35s ease forwards; }
+.stagger > *:nth-child(8) { animation: fadeInUp 0.3s 0.4s ease forwards; }
+.stagger > *:nth-child(9) { animation: fadeInUp 0.3s 0.45s ease forwards; }
+.stagger > *:nth-child(10) { animation: fadeInUp 0.3s 0.5s ease forwards; }

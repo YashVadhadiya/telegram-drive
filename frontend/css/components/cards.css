@@ -1,0 +1,219 @@
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.card:hover {
+  background: var(--card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card:active {
+  transform: translateY(0);
+  transition-duration: var(--transition-fast);
+}
+
+.card-file {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.card-file-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.card-file-icon.image { background: var(--success-soft); color: var(--success); }
+.card-file-icon.video { background: var(--warning-soft); color: var(--warning); }
+.card-file-icon.audio { background: var(--danger-soft); color: var(--danger); }
+.card-file-icon.archive { background: var(--accent-soft); color: var(--accent); }
+
+.card-file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-file-name {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-file-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+}
+
+.card-file-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.card-file:hover .card-file-actions {
+  opacity: 1;
+}
+
+.card-folder {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.card-folder-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.card-folder-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-folder-name {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-folder-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+}
+
+.card-folder-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-stat {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.card-stat-icon.success { background: var(--success-soft); color: var(--success); }
+.card-stat-icon.warning { background: var(--warning-soft); color: var(--warning); }
+.card-stat-icon.danger { background: var(--danger-soft); color: var(--danger); }
+
+.card-stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.card-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.card-stat-change {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-stat-change.up { color: var(--success); }
+.card-stat-change.down { color: var(--danger); }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-list .card {
+  border-radius: var(--radius-sm);
+}
+
+.card-list .card:hover {
+  transform: none;
+  background: var(--bg-hover);
+}
+
+.card-checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
