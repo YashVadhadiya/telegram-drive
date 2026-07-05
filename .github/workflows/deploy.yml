@@ -57,8 +57,22 @@ jobs:
         with:
           node-version: 24
       - name: Deploy to Cloudflare Workers
+        shell: bash
         run: |
+          set -x
+          echo "=== PWD ==="
+          pwd
+          echo "=== FILES ==="
+          ls -la
+          echo "=== BACKEND DIR ==="
+          ls -la backend/ 2>&1 || echo "no backend dir"
+          echo "=== WRANGLER.TOML ==="
+          cat backend/wrangler.toml 2>&1 || echo "no wrangler.toml"
+          echo "=== SRC ==="
+          ls -la backend/src/ 2>&1 || echo "no src dir"
+          echo "=== DEPLOY ==="
           cd backend
           npx --yes wrangler@4 deploy 2>&1
+          echo "=== DONE ==="
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
