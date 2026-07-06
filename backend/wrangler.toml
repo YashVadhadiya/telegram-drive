@@ -1,0 +1,31 @@
+name = "telegram-drive"
+main = "src/index.js"
+compatibility_date = "2024-12-18"
+compatibility_flags = ["nodejs_compat"]
+
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "telegram-drive-db"
+database_id = "18d34759-bd78-4623-957b-070d22bc3866"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "c209782ae8fc480a902b4e5de79e2e8c"
+
+[vars]
+JWT_ACCESS_EXPIRY = "900"
+JWT_REFRESH_EXPIRY = "604800"
+ENCRYPTION_ITERATIONS = "100000"
+MAX_FILE_SIZE = "2147483648"
+CHUNK_SIZE = "52428800"
+MAX_CONCURRENT_UPLOADS = "3"
+UPLOAD_RETRY_ATTEMPTS = "3"
+STORAGE_QUOTA_DEFAULT = "-1"
+CORS_ORIGIN = "https://YashVadhadiya.github.io"
+RATE_LIMIT_WINDOW = "60"
+RATE_LIMIT_MAX_GLOBAL = "200"
+RATE_LIMIT_MAX_AUTH = "10"
+RATE_LIMIT_MAX_UPLOAD = "20"
+RATE_LIMIT_MAX_DOWNLOAD = "30"
